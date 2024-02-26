@@ -44,8 +44,7 @@ class Embedding(Module):
 
     def forward(self, input_ids: torch.Tensor, position_ids: Optional[torch.Tensor] = None) -> torch.Tensor:
         """See: https://pages.github.coecis.cornell.edu/cs4740/hw4-fa23/seagull.model.components.embedding.html."""
-        # TODO-3
-        # print(input_ids.shape)
+    
         
         input_embeds = self.token_embedding(input_ids)
         # print(input_embeds.shape)
