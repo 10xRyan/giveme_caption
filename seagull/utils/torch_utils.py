@@ -15,14 +15,10 @@ def set_seed(seed: int = 4740):
     torch.manual_seed(seed)
     torch.cuda.manual_seed(seed)
     torch.backends.cudnn.deterministic = True
-    # Setting `torch.backends.cudnn.benchmark = False` slows down training.
-    # Reference: https://pytorch.org/docs/stable/notes/randomness.html.
     torch.backends.cudnn.benchmark = True
 
 
 def set_pytorch_backends():
-    # TF32: https://docs.monai.io/en/stable/precision_accelerating.html.
-    # Set TF32 for speedup: https://x.com/GuggerSylvain/status/1599190137367166977?s=20.
     torch.backends.cuda.matmul.allow_tf32 = True
     torch.backends.cudnn.allow_tf32 = True
     torch.backends.opt_einsum.enabled = True
@@ -51,8 +47,6 @@ def ddp_cleanup():
 
 
 def remove_compiled_model_prefix_from_model_state_dict(model_state_dict: Dict[str, Any]) -> Dict[str, Any]:
-    # See: https://discuss.pytorch.org/t/how-to-save-load-a-model-with-torch-compile/179739/2.
-    unwanted_prefix = "_orig_mod."
     for module_name, value in list(model_state_dict.items()):
         if module_name.startswith(unwanted_prefix):
             model_state_dict[module_name[len(unwanted_prefix) :]] = model_state_dict.pop(module_name)
