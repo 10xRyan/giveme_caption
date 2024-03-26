@@ -1,4 +1,3 @@
-#: Colors and their ANSI escape sequences.
 COLOR_MAP = {
     "red": "\033[91m",
     "green": "\033[92m",
@@ -10,8 +9,6 @@ COLOR_MAP = {
     "grey": "\033[97m",
 }
 
-# Reference: https://stackoverflow.com/a/33206814.
-#: Text styles and their ANSI escape sequences.
 ATTRS_MAP = {
     "underline": "\033[4m",
     "bold": "\033[1m",
